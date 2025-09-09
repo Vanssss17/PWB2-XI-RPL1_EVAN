@@ -7,10 +7,33 @@
     <title>Mini Ecommerce - Furniture</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .card-img-top {
+            object-fit: contain;
+            height: 200px;
+            width: 100%;
+            background-color: white;
+        }
+        .card-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        nav {
+            background-color: white;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <nav class="navbar navbar-light bg-light">
+        <nav class="navbar fixed-top">
             <a class="navbar-brand">Mini Ecommerce - Furniture</a>
             <form class="form-inline" id="formItem">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" id="keyword" aria-label="Search">
@@ -20,7 +43,7 @@
                 <i class="fas fa-shopping-cart"></i> (<span id="cartCount">0</span>)
             </button>
         </nav>
-        <div class="row col-md-12 mt-2" id="listBarang"></div>
+        <div class="row col-md-12 mt-5" id="listBarang"></div>
     </div>
 
     <script>
@@ -28,7 +51,12 @@
             ['F001', 'Meja Kayu Minimalis', 750000, 'Meja kayu jati desain minimalis, cocok untuk ruang tamu.', 'img/meja_kayu.jpg'],
             ['F002', 'Kursi Santai Rotan', 550000, 'Kursi santai berbahan rotan alami dengan bantalan empuk.', 'img/kursi_rotan.jpg'],
             ['F003', 'Lemari Pakaian', 1500000, 'Lemari pakaian 2 pintu hemat tempat.', 'img/lemari.jpg'],
-            ['F004', 'Rak Buku Modern', 450000, 'Rak buku model modern untuk menambah estetika ruangan.', 'img/rak.jpg']
+            ['F004', 'Rak Buku Modern', 450000, 'Rak buku model modern untuk menambah estetika ruangan.', 'img/rak.jpg'],
+            ['F005', 'Sofa L Shape', 2599000, 'Sofa nyaman model L, cocok untuk keluarga besar.', 'img/sofa.jpg'],
+            ['F006', 'Meja Makan Marmer', 4299000, 'Meja makan elegan dengan permukaan marmer asli.', 'img/meja_marmer.jpg'],
+            ['F007', 'Lampu Gantung', 750000, 'Lampu gantung bergaya industrial untuk ruang makan.', 'img/lampu_gantung.jpg'],
+            ['F008', 'Kasur Queen Size', 2899000, 'Kasur empuk ukuran queen untuk tidur lebih nyenyak.', 'img/kasur.jpg'],
+            ['F009', 'Buffet TV Minimalis', 499000, 'Buffet TV kayu minimalis, multifungsi untuk penyimpanan.', 'img/bufet_tv.jpg']
         ];
 
         var listBarang = document.getElementById("listBarang");
@@ -40,14 +68,14 @@
             items.forEach(function(item) {
                 if (item[1].toLowerCase().includes(filter.toLowerCase())) {
                     listBarang.innerHTML += `
-                        <div class="col-4 mt-2">
-                            <div class="card" style="width: 18rem;">
-                                <img src="${item[4]}" class="card-img-top" height="200px" width="200px" alt="${item[1]}">
+                        <div class="col-sm-6 col-md-4 col-lg-3 mt-5">
+                            <div class="card">
+                                <img src="${item[4]}" class="card-img-top" alt="${item[1]}">
                                 <div class="card-body">
                                     <h5 class="card-title">${item[1]}</h5>
                                     <p class="card-text">${item[3]}</p>
-                                    <p class="card-text">Rp ${item[2].toLocaleString()}</p>
-                                    <a href="#" class="btn btn-primary addCart">Tambahkan ke keranjang</a>
+                                    <p class="card-text font-weight-bold text-success">Rp ${item[2].toLocaleString('id-ID', { minimumFractionDigits: 2 })}</p>
+                                    <a href="#" class="btn btn-primary addCart">Add To Cart</a>
                                 </div>
                             </div>
                         </div>
